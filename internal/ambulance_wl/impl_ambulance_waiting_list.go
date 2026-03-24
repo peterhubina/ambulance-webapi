@@ -2,6 +2,7 @@ package ambulance_wl
 
 import (
     "net/http"
+    "time"
 
     "github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -66,10 +67,6 @@ func (o implAmbulanceWaitingListAPI) CreateWaitingListEntry(c *gin.Context) {
 }
 
 func (o implAmbulanceWaitingListAPI) DeleteWaitingListEntry(c *gin.Context) {
-    ...
-// DeleteWaitingListEntry - Deletes specific entry
-func (o *implAmbulanceWaitingListAPI) DeleteWaitingListEntry(c *gin.Context) {
-    // update ambulance document
     updateAmbulanceFunc(c, func(c *gin.Context, ambulance *Ambulance) (*Ambulance, interface{}, int) {
         entryId := c.Param("entryId")
 
@@ -95,7 +92,6 @@ func (o *implAmbulanceWaitingListAPI) DeleteWaitingListEntry(c *gin.Context) {
         ambulance.reconcileWaitingList()
         return ambulance, nil, http.StatusNoContent
     })
-}
 }
 
 func (o implAmbulanceWaitingListAPI) GetWaitingListEntries(c *gin.Context) {
